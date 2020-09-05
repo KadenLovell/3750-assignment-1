@@ -1,24 +1,213 @@
-<mat-card>
-    <mat-card-content>
-        <form #form="ngForm" (ngSubmit)="onSubmit(form)">
-            <h2>Welcome</h2>
-            <mat-form-field class="full-width-input">
-                <input matInput placeholder="Email" name="email" ngModel #email="ngModel" required>
-                <mat-error>
-                    Email address is required.
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field class="full-width-input">
-                <input matInput type="password" placeholder="Password" name="password" ngModel #password="ngModel"
-                    required>
-                <mat-error>
-                    Password is required.
-                </mat-error>
-            </mat-form-field>
-            <div class="button-container">
-                <button mat-button color="secondary" type="button" (click)="createUser()">Create user</button>
-                <button mat-raised-button color="primary" type="submit">Login</button>
-            </div>
-        </form>
-    </mat-card-content>
-</mat-card>
+<ng-container [ngSwitch]="view">
+    <!-- view 1|login -->
+    <ng-container *ngSwitchCase="1">
+        <ng-container *ngTemplateOutlet="view1"></ng-container>
+    </ng-container>
+
+    <!-- view 2|create user -->
+    <ng-container *ngSwitchCase="2">
+        <ng-container *ngTemplateOutlet="view2"></ng-container>
+    </ng-container>
+
+    <!-- view 3|forgot password -->
+    <ng-container *ngSwitchCase="3">
+        <ng-container *ngTemplateOutlet="view3"></ng-container>
+    </ng-container>
+</ng-container>
+
+<ng-template #view1>
+    <mat-card>
+        <mat-card-content>
+            <form #form="ngForm" class="form-container" (ngSubmit)="login()">
+                <h2>Login</h2>
+
+                <mat-form-field class="full-width-input">
+                    <input #username="ngModel" matInput placeholder="Username" name="username" type="text" [(ngModel)]="model.username" required>
+                    <mat-error>
+                        Username is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width-input">
+                    <input #password="ngModel" matInput placeholder="Password" name="password" type="password" [(ngModel)]="model.password" required>
+                    <mat-error>
+                        Password is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-divider [inset]="true"></mat-divider>
+
+                <div class="button-container">
+                    <button mat-stroked-button type="button" (click)="view = 2">Create user</button>
+                    <button mat-stroked-button type="button" [disabled]="!model.username" (click)="loadQuestions()">Forgot Password</button>
+                    <button mat-raised-button color="primary" type="submit">Login</button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</ng-template>
+
+<ng-template #view2>
+    <mat-card>
+        <mat-card-content>
+            <form #form="ngForm" class="form-container" (ngSubmit)="createUser()">
+                <h2>Create User</h2>
+
+                <mat-form-field class="full-width-input">
+                    <input #username="ngModel" matInput placeholder="Username" name="username" type="text" [(ngModel)]="model.username" required>
+                    <mat-error>
+                        Username is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width-input">
+                    <input #email="ngModel" matInput placeholder="Email" name="email" type="email" [(ngModel)]="model.email" required>
+                    <mat-error>
+                        Email address is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width-input">
+                    <input #confirmEmail="ngModel" matInput placeholder="Confirm Email" name="confirmEmail" type="email" [(ngModel)]="model.confirmEmail" required>
+                    <mat-error>
+                        Email address confirmation is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width-input">
+                    <input #password="ngModel" matInput placeholder="Password" name="password" type="password" [(ngModel)]="model.password" required>
+                    <mat-error>
+                        Password is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width-input">
+                    <input #confirmPassword="ngModel" matInput placeholder="Confirm Password" name="confirmPassword" type="password" [(ngModel)]="model.confirmPassword" required>
+                    <mat-error>
+                        Password confirmation is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width-input">
+                    <input #question1="ngModel" matInput placeholder="Question 1" name="question1" type="text" [(ngModel)]="model.question1" required>
+                    <mat-error>
+                        Question 1 is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width-input">
+                    <input #answer1="ngModel" matInput placeholder="Answer 1" name="answer1" type="text" [(ngModel)]="model.answer1" required>
+                    <mat-error>
+                        Answer 1 is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width-input">
+                    <input #question2="ngModel" matInput placeholder="Question 2" name="question2" type="text" [(ngModel)]="model.question2" required>
+                    <mat-error>
+                        Question 2 is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width-input">
+                    <input #answer2="ngModel" matInput placeholder="Answer 2" name="answer2" type="text" [(ngModel)]="model.answer2" required>
+                    <mat-error>
+                        Answer 2 is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width-input">
+                    <input #question3="ngModel" matInput placeholder="Question 3" name="question3" type="text" [(ngModel)]="model.question3" required>
+                    <mat-error>
+                        Question 3 is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width-input">
+                    <input #answer3="ngModel" matInput placeholder="Answer 3" name="answer3" type="text" [(ngModel)]="model.answer3" required>
+                    <mat-error>
+                        Answer 3 is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-divider [inset]="true"></mat-divider>
+
+                <div class="button-container">
+                    <button mat-stroked-button type="button" (click)="view = 1">Cancel</button>
+                    <button mat-raised-button color="primary" type="submit">Create</button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</ng-template>
+
+<ng-template #view3>
+    <mat-card>
+        <mat-card-content>
+            <form #form="ngForm" class="form-container" (ngSubmit)="resetPassword()">
+                <h2>Reset Password</h2>
+
+                <mat-form-field class="full-width-input">
+                    <input #username="ngModel" matInput placeholder="Username" name="username" type="text" [(ngModel)]="model.username" required>
+                    <mat-error>
+                        Username is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width-input">
+                    <input #question1="ngModel" matInput readonly placeholder="Question 1" name="question1" type="text" [(ngModel)]="model.question1">
+                </mat-form-field>
+
+                <mat-form-field class="full-width-input">
+                    <input #answer1="ngModel" matInput placeholder="Answer 1" name="answer1" type="text" [(ngModel)]="model.answer1" required>
+                    <mat-error>
+                        Answer 1 is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width-input">
+                    <input #question2="ngModel" matInput readonly placeholder="Question 2" name="question2" type="text" [(ngModel)]="model.question2">
+                </mat-form-field>
+
+                <mat-form-field class="full-width-input">
+                    <input #answer2="ngModel" matInput placeholder="Answer 2" name="answer2" type="text" [(ngModel)]="model.answer2" required>
+                    <mat-error>
+                        Answer 2 is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width-input">
+                    <input #question3="ngModel" matInput readonly placeholder="Question 3" name="question3" type="text" [(ngModel)]="model.question3">
+                </mat-form-field>
+
+                <mat-form-field class="full-width-input">
+                    <input #answer3="ngModel" matInput placeholder="Answer 3" name="answer3" type="text" [(ngModel)]="model.answer3" required>
+                    <mat-error>
+                        Answer 3 is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width-input">
+                    <input #newPassword="ngModel" matInput placeholder="New Password" name="newPassword" type="password" [(ngModel)]="model.newPassword" required>
+                    <mat-error>
+                        New password is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width-input">
+                    <input #confirmNewPassword="ngModel" matInput placeholder="Confirm New Password" name="confirmNewPassword" type="password" [(ngModel)]="model.confirmNewPassword" required>
+                    <mat-error>
+                        New Password confirmation is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-divider [inset]="true"></mat-divider>
+
+                <div class="button-container">
+                    <button mat-stroked-button type="button" (click)="view = 1">Cancel</button>
+                    <button mat-raised-button color="primary" type="submit">Reset</button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</ng-template>

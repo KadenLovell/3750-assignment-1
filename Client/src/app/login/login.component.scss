@@ -4,6 +4,11 @@ mat-card {
     text-align: center;
   }
 
+  .form-container {
+    display: grid;
+    grid-row-gap: 10px;
+}
+
   .button-container {
       display: grid;
       grid-row-gap: 5px;
