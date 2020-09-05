@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 // angular material components
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatNativeDateModule } from '@angular/material/core'; 
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -39,6 +40,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
+        MatNativeDateModule,
         MatCheckboxModule,
         MatCheckboxModule,
         MatButtonModule,
@@ -74,6 +76,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     exports: [
         BrowserModule,
         BrowserAnimationsModule,
+        MatNativeDateModule,
         MatCheckboxModule,
         MatCheckboxModule,
         MatButtonModule,

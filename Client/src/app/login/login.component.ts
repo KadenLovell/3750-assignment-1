@@ -1,5 +1,4 @@
-import { Component, ViewChild, ChangeDetectorRef, OnInit } from "@angular/core";
-import { NgForm, NgModel } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
 
 @Component({
   selector: 'app-login',
@@ -7,13 +6,15 @@ import { NgForm, NgModel } from "@angular/forms";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  model = [];
+  model: any;
 
   view: any;
   constructor() { }
 
   ngOnInit(): void {
     this.view = 1;
+    this.model = {};
+    this.model.dateOfBirth = [];
   }
 
   resetPassword() {

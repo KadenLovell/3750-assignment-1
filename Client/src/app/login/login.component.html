@@ -39,7 +39,7 @@
 
                 <div class="button-container">
                     <button mat-stroked-button type="button" (click)="view = 2">Create user</button>
-                    <button mat-stroked-button type="button" [disabled]="!model.username" (click)="loadQuestions()">Forgot Password</button>
+                    <button mat-stroked-button type="button" [disabled]="!model.username" (click)="view=3; loadQuestions()">Forgot Password</button>
                     <button mat-raised-button color="primary" type="submit">Login</button>
                 </div>
             </form>
@@ -57,6 +57,27 @@
                     <input #username="ngModel" matInput placeholder="Username" name="username" type="text" [(ngModel)]="model.username" required>
                     <mat-error>
                         Username is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width-input">
+                    <input #firstname="ngModel" matInput placeholder="First Name" name="firstname" type="text" [(ngModel)]="model.firstname" required>
+                    <mat-error>
+                        First name is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width-input">
+                    <input #lastname="ngModel" matInput placeholder="Last Name" name="lastname" type="text" [(ngModel)]="model.lastname" required>
+                    <mat-error>
+                        Last name is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width-input">
+                    <input #dateOfBirth="ngModel" matInput placeholder="Date Of Birth" name="dateOfBirth" type="date" [(ngModel)]="model.dateOfBirth" required>
+                    <mat-error>
+                        Date of birth is required.
                     </mat-error>
                 </mat-form-field>
 
@@ -88,48 +109,6 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field class="full-width-input">
-                    <input #question1="ngModel" matInput placeholder="Question 1" name="question1" type="text" [(ngModel)]="model.question1" required>
-                    <mat-error>
-                        Question 1 is required.
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field class="full-width-input">
-                    <input #answer1="ngModel" matInput placeholder="Answer 1" name="answer1" type="text" [(ngModel)]="model.answer1" required>
-                    <mat-error>
-                        Answer 1 is required.
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field class="full-width-input">
-                    <input #question2="ngModel" matInput placeholder="Question 2" name="question2" type="text" [(ngModel)]="model.question2" required>
-                    <mat-error>
-                        Question 2 is required.
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field class="full-width-input">
-                    <input #answer2="ngModel" matInput placeholder="Answer 2" name="answer2" type="text" [(ngModel)]="model.answer2" required>
-                    <mat-error>
-                        Answer 2 is required.
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field class="full-width-input">
-                    <input #question3="ngModel" matInput placeholder="Question 3" name="question3" type="text" [(ngModel)]="model.question3" required>
-                    <mat-error>
-                        Question 3 is required.
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field class="full-width-input">
-                    <input #answer3="ngModel" matInput placeholder="Answer 3" name="answer3" type="text" [(ngModel)]="model.answer3" required>
-                    <mat-error>
-                        Answer 3 is required.
-                    </mat-error>
-                </mat-form-field>
-
                 <mat-divider [inset]="true"></mat-divider>
 
                 <div class="button-container">
@@ -151,53 +130,6 @@
                     <input #username="ngModel" matInput placeholder="Username" name="username" type="text" [(ngModel)]="model.username" required>
                     <mat-error>
                         Username is required.
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field class="full-width-input">
-                    <input #question1="ngModel" matInput readonly placeholder="Question 1" name="question1" type="text" [(ngModel)]="model.question1">
-                </mat-form-field>
-
-                <mat-form-field class="full-width-input">
-                    <input #answer1="ngModel" matInput placeholder="Answer 1" name="answer1" type="text" [(ngModel)]="model.answer1" required>
-                    <mat-error>
-                        Answer 1 is required.
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field class="full-width-input">
-                    <input #question2="ngModel" matInput readonly placeholder="Question 2" name="question2" type="text" [(ngModel)]="model.question2">
-                </mat-form-field>
-
-                <mat-form-field class="full-width-input">
-                    <input #answer2="ngModel" matInput placeholder="Answer 2" name="answer2" type="text" [(ngModel)]="model.answer2" required>
-                    <mat-error>
-                        Answer 2 is required.
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field class="full-width-input">
-                    <input #question3="ngModel" matInput readonly placeholder="Question 3" name="question3" type="text" [(ngModel)]="model.question3">
-                </mat-form-field>
-
-                <mat-form-field class="full-width-input">
-                    <input #answer3="ngModel" matInput placeholder="Answer 3" name="answer3" type="text" [(ngModel)]="model.answer3" required>
-                    <mat-error>
-                        Answer 3 is required.
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field class="full-width-input">
-                    <input #newPassword="ngModel" matInput placeholder="New Password" name="newPassword" type="password" [(ngModel)]="model.newPassword" required>
-                    <mat-error>
-                        New password is required.
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field class="full-width-input">
-                    <input #confirmNewPassword="ngModel" matInput placeholder="Confirm New Password" name="confirmNewPassword" type="password" [(ngModel)]="model.confirmNewPassword" required>
-                    <mat-error>
-                        New Password confirmation is required.
                     </mat-error>
                 </mat-form-field>
 
