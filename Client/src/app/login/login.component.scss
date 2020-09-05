@@ -3,7 +3,12 @@ mat-card {
     margin: 2em auto;
     text-align: center;
   }
-  
+
+  .button-container {
+      display: grid;
+      grid-row-gap: 5px;
+  }
+
   mat-form-field {
     display: block;
   }

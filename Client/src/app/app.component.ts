@@ -5,17 +5,16 @@ import { onMainContentChange } from './animations';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: [ './app.component.scss' ],
-  animations: [ onMainContentChange ]
+  styleUrls: ['./app.component.scss'],
+  animations: [onMainContentChange]
 })
-export class AppComponent  {
-  name = 'Angular';
+export class AppComponent {
+  title = 'Client';
   public onSideNavChange: boolean;
 
   constructor(private _sidenavService: SidenavService) {
-    this._sidenavService.sideNavState$.subscribe( res => {
+    this._sidenavService.sideNavState$.subscribe(res => {
       this.onSideNavChange = res;
     })
   }
-
 }

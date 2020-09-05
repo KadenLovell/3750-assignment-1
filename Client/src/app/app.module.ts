@@ -29,4 +29,5 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   providers: [SidenavService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

@@ -7,15 +7,15 @@ import { NgForm } from "@angular/forms";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   onSubmit(f: NgForm) {
-    console.log(f.value);  // { first: '', last: '' }
-    console.log(f.valid);  // false
+    // todo: redirect to home
   }
 
+  createUser() {
+    // todo: update the html with a second view to handle user creation.
+  }
 }
