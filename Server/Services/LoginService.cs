@@ -28,9 +28,11 @@ namespace Server.Services {
                 success = true,
                 user = new {
                     id = user.Id,
+                    username = user.Username,
+                    email = user.Email,
                     firstname = user.FirstName,
                     lastname = user.LastName,
-                    email = user.Email
+                    dateOfBirth = user.DateOfBirth
                 }
             };
 

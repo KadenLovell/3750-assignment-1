@@ -1,6 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { LoginService } from './login.service';
 import { Router, ActivatedRoute } from '@angular/router';
+
+import { LoginService } from './login.service';
+import { User } from '../user';
+
+// shared
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +19,7 @@ export class LoginComponent implements OnInit {
   errors: any;
   view: any;
 
-  constructor(private route: ActivatedRoute, private readonly router: Router, private readonly _loginService: LoginService) { }
+  constructor(private route: ActivatedRoute, private readonly router: Router, private _userService: UserService, private readonly _loginService: LoginService) { }
 
   ngOnInit(): void {
     this.view = 1;
@@ -37,8 +42,19 @@ export class LoginComponent implements OnInit {
       this.response = response;
       this.errors = response.errors;
 
-      // if result was successful: route to home component
+      // if result was successful: set shared user, then route to home component
       if (this.response && this.response.success) {
+        const user: User = {
+          id: response.user.id,
+          username: response.user.username,
+          email: response.user.email,
+          firstname: response.user.firstname,
+          lastname: response.user.lastname,
+          dateOfBirth: response.user.dateOfBirth
+        }
+
+        this._userService.setUser(user);
+
         this.router.navigate(['../home'], { relativeTo: this.route });
       }
     });
@@ -55,7 +71,19 @@ export class LoginComponent implements OnInit {
         return;
       }
 
+      // if result was successful: set shared user, then route to home component
       if (this.response && this.response.success) {
+        const user: User = {
+          id: response.user.id,
+          username: response.user.username,
+          email: response.user.email,
+          firstname: response.user.firstname,
+          lastname: response.user.lastname,
+          dateOfBirth: response.user.dateOfBirth
+        }
+
+        this._userService.setUser(user);
+
         this.router.navigate(['../home'], { relativeTo: this.route });
       }
     });
