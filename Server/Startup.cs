@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Server.Services;
 using Newtonsoft.Json;
+using Server.Persistence;
 
 namespace Server {
     public class Startup {

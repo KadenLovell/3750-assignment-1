@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Server.Models;
+using Server.Persistence;
 
 namespace Server.Services {
     public class UserService {
