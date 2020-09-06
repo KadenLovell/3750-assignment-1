@@ -1,3 +1,7 @@
+# git ignore for Server, add any environment specific files to this please
+# we want to limit the repo to only functional code, and this is a small first step
+# I have already added the build files, and my vscode extension folder as an example
 /bin
 /obj
 /migrations
+/.vscode

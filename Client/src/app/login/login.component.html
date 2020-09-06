@@ -15,12 +15,19 @@
     </ng-container>
 </ng-container>
 
+<!-- login -->
 <ng-template #view1>
     <mat-card>
         <mat-card-content>
             <form #form="ngForm" class="form-container" (ngSubmit)="login()">
                 <h2>Login</h2>
 
+                <!-- Form Errors -->
+                <mat-error *ngIf="errors && errors.userNotFound">
+                    Username, or password was invalid.
+                </mat-error>
+
+                <!-- Form Fields -->
                 <mat-form-field class="full-width-input">
                     <input #username="ngModel" matInput placeholder="Username" name="username" type="text" [(ngModel)]="model.username" required>
                     <mat-error>
@@ -38,8 +45,8 @@
                 <mat-divider [inset]="true"></mat-divider>
 
                 <div class="button-container">
-                    <button mat-stroked-button type="button" (click)="view = 2">Create user</button>
-                    <button mat-stroked-button type="button" [disabled]="!model.username" (click)="view=3; loadQuestions()">Forgot Password</button>
+                    <button mat-stroked-button type="button" (click)="view = 2; resetViewstate()">Create user</button>
+                    <button mat-stroked-button type="button" [disabled]="!model.username" (click)="view=3; resetViewstate()">Forgot Password</button>
                     <button mat-raised-button color="primary" type="submit">Login</button>
                 </div>
             </form>
@@ -47,12 +54,22 @@
     </mat-card>
 </ng-template>
 
+<!-- create user -->
 <ng-template #view2>
     <mat-card>
         <mat-card-content>
             <form #form="ngForm" class="form-container" (ngSubmit)="createUser()">
                 <h2>Create User</h2>
+                <!-- Form Errors -->
+                <mat-error *ngIf="errors && errors.usernameExists">
+                    Username is already registered.
+                </mat-error>
 
+                <mat-error *ngIf="errors && errors.emailExists">
+                    Email address is already registered.
+                </mat-error>
+
+                <!-- Form Fields -->
                 <mat-form-field class="full-width-input">
                     <input #username="ngModel" matInput placeholder="Username" name="username" type="text" [(ngModel)]="model.username" required>
                     <mat-error>
@@ -112,7 +129,7 @@
                 <mat-divider [inset]="true"></mat-divider>
 
                 <div class="button-container">
-                    <button mat-stroked-button type="button" (click)="view = 1">Cancel</button>
+                    <button mat-stroked-button type="button" (click)="view = 1; resetViewstate()">Cancel</button>
                     <button mat-raised-button color="primary" type="submit">Create</button>
                 </div>
             </form>
@@ -120,6 +137,7 @@
     </mat-card>
 </ng-template>
 
+<!-- forgot password -->
 <ng-template #view3>
     <mat-card>
         <mat-card-content>
@@ -136,7 +154,7 @@
                 <mat-divider [inset]="true"></mat-divider>
 
                 <div class="button-container">
-                    <button mat-stroked-button type="button" (click)="view = 1">Cancel</button>
+                    <button mat-stroked-button type="button" (click)="view = 1; resetViewstate()">Cancel</button>
                     <button mat-raised-button color="primary" type="submit">Reset</button>
                 </div>
             </form>

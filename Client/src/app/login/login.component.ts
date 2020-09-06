@@ -1,15 +1,20 @@
 import { Component, OnInit } from "@angular/core";
+import { LoginService } from './login.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  providers: [LoginService]
 })
 export class LoginComponent implements OnInit {
   model: any;
-
+  response: any;
+  errors: any;
   view: any;
-  constructor() { }
+
+  constructor(private route: ActivatedRoute, private readonly router: Router, private readonly _loginService: LoginService) { }
 
   ngOnInit(): void {
     this.view = 1;
@@ -22,27 +27,49 @@ export class LoginComponent implements OnInit {
     // send questions + new password to server,
     // validate the questions on the server for security,
     // if no match, show error message, else update password
+    return;
   }
 
   login() {
-    // TODO:
-    // pass username, and password to server (encrypted if possible)
-    // if server returns no users, have UI display "username, or password was incorrect." error
-    // else, process the cookie returned from the server (may be done in a v2.0), and login to site
-    // redirect to home
+    // if there are loading animations, handle the state here: IE: this.loading = true;
+    this._loginService.login(this.model).then(response => {
+      // if there are loading animations, handle the state here: IE: this.loading = false;
+      this.response = response;
+      this.errors = response.errors;
+
+      // if result was successful: route to home component
+      if (this.response && this.response.success) {
+        this.router.navigate(['../home'], { relativeTo: this.route });
+      }
+    });
   }
 
   createUser() {
-    // TODO:
-    // pass the fields to the server
-    // if server returns status 200, view = 1
-    // if server returns error: emailDuplicate, display error message
-    // if server returns error: usernameDuplicate, display error message
+    // if there are loading animations, handle the state here: IE: this.loading = true;
+    this._loginService.addUser(this.model).then(response => {
+      // if there are loading animations, handle the state here: IE: this.loading = false;
+      this.response = response;
+      this.errors = response.errors;
+
+      if (this.errors) {
+        return;
+      }
+
+      if (this.response && this.response.success) {
+        this.router.navigate(['../home'], { relativeTo: this.route });
+      }
+    });
   }
+
   loadQuestions() {
     // TODO:
     // pass username to server
     // if server returns status 200, set questions in the model
     // if server returns error, "username doesn't exist"
+    return;
+  }
+
+  resetViewstate() {
+    this.errors = {};
   }
 }
