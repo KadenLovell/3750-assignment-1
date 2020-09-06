@@ -24,14 +24,14 @@
 
                 <!-- Form Errors -->
                 <mat-error *ngIf="errors && errors.userNotFound">
-                    Username, or password was invalid.
+                    Email, or password was invalid.
                 </mat-error>
 
                 <!-- Form Fields -->
                 <mat-form-field class="full-width-input">
-                    <input #username="ngModel" matInput placeholder="Username" name="username" type="text" [(ngModel)]="model.username" required>
+                    <input #email="ngModel" matInput placeholder="Email" name="email" type="email" [(ngModel)]="model.email" required>
                     <mat-error>
-                        Username is required.
+                        Email is required.
                     </mat-error>
                 </mat-form-field>
 

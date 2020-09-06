@@ -10,10 +10,10 @@ namespace Server.Services {
             _context = context;
         }
         public async Task<dynamic> LoginAsync(dynamic model) {
-            var username = (string)model.username;
+            var email = (string)model.email;
             var password = (string)model.password;
 
-            var user = await _context.User.Where(x => x.Username == username && x.Password == password).SingleOrDefaultAsync();
+            var user = await _context.User.Where(x => x.Email.ToLower() == email.ToLower() && x.Password == password).SingleOrDefaultAsync();
 
             if (user == null) {
                 var error = new {

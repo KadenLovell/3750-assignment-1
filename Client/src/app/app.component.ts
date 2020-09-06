@@ -9,7 +9,7 @@ import { onMainContentChange } from './animations';
   animations: [onMainContentChange]
 })
 export class AppComponent {
-  title = 'Client';
+  title = 'Client'
   public onSideNavChange: boolean;
 
   constructor(private _sidenavService: SidenavService) {
@@ -17,4 +17,5 @@ export class AppComponent {
       this.onSideNavChange = res;
     })
   }
+
 }
